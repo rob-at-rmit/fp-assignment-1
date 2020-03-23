@@ -7,6 +7,11 @@ import model.card.Suit;
 public class SuitBetImpl implements SuitBet 
 {
 
+	public SuitBetImpl(final Player player, final int amount, final Suit suit) throws NullPointerException, IllegalArgumentException
+	{
+		
+	}
+	
 	@Override
 	public Player getPlayer() 
 	{

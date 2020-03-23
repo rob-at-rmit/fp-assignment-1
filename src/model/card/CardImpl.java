@@ -3,6 +3,11 @@ package model.card;
 public class CardImpl implements Card 
 {
 
+	public CardImpl(final Suit suit, final Rank rank)
+	{
+		
+	}
+	
 	@Override
 	public Suit getSuit() 
 	{
@@ -23,7 +28,14 @@ public class CardImpl implements Card
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	@Override
+	public int hashCode()
+	{
+		// TODO implement me;
+		return 0;
+	}
+	
 	@Override
 	public int compareTo(Card card) 
 	{

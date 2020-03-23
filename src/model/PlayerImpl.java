@@ -6,7 +6,7 @@ import model.card.Hand;
 public class PlayerImpl implements Player 
 {
 	
-	public PlayerImpl(final String id, final String name, final int points) 
+	public PlayerImpl(final String id, final String name, final int points) throws NullPointerException, IllegalArgumentException
 	{
 		
 	}

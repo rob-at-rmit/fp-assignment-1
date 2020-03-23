@@ -5,6 +5,11 @@ import model.card.Hand;
 
 public class ScoreBetImpl implements ScoreBet 
 {
+	
+	public ScoreBetImpl(final Player player, final int amount) throws NullPointerException, IllegalArgumentException
+	{
+		
+	}
 
 	@Override
 	public Player getPlayer() 

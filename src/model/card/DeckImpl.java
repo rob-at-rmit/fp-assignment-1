@@ -1,7 +1,24 @@
 package model.card;
 
-public class DeckImpl implements Deck 
+public class DeckImpl implements Deck
 {
+	
+	public static Deck createShuffledDeck() 
+	{
+		// TODO implement me
+		return null;
+	}
+	
+	public static Deck createSortedDeck() 
+	{
+		// TODO implement me
+		return null;
+	}
+	
+	private DeckImpl() 
+	{
+		
+	}
 
 	@Override
 	public Card removeNextCard() throws IllegalStateException 
