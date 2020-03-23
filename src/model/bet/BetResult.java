@@ -19,7 +19,8 @@ package model.bet;
  */
 public enum BetResult
 {
-	UNDETERMINED
-	
-	// you must complete the rest of the enum values
+	UNDETERMINED,
+	PLAYER_LOSS,
+	DRAW,
+	PLAYER_WIN
 }

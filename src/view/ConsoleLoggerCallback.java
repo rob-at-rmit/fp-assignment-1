@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 import model.GameEngine;
 import model.Player;
-import model.bet.Bet;
 import model.card.Card;
 import model.card.Deck;
 import model.card.Hand;
@@ -45,6 +44,68 @@ public class ConsoleLoggerCallback implements GameCallback
 		handler.setLevel(Level.FINER);
 		LOGGER.addHandler(handler);
 		LOGGER.setUseParentHandlers(false);
+	}
+	
+	public ConsoleLoggerCallback(final GameEngine engine) 
+	{
+		super();
+		// TODO: Implement me
+	}
+
+	@Override
+	public void addPlayer(Player player) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removePlayer(Player player) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void betUpdated(Player player) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void newDeck(Deck deck) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void playerCard(Player player, Card card) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void playerBust(Player player, Card card) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void houseCard(Hand houseHand, Card card) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void houseBust(Hand houseHand, Card card) 
+	{
+		// TODO Auto-generated method stub
+		
 	}
 	
 

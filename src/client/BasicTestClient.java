@@ -1,10 +1,11 @@
 package client;
 
 
-import validate.Validator;
-
 import model.GameEngine;
+import model.GameEngineImpl;
+import model.PlayerImpl;
 import model.card.Suit;
+import validate.Validator;
 import view.ConsoleLoggerCallback;
 
 /**
