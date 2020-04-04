@@ -195,5 +195,4 @@ public interface Bet extends Comparable<Bet>
 		}
 	};
 
-
 }

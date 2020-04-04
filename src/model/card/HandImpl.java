@@ -1,57 +1,88 @@
 package model.card;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 public class HandImpl implements Hand 
 {
+    
+    private final Collection<Card> cards;
+    
+    public HandImpl() 
+    {
+        this.cards = new ArrayList<>();
+    }
 
 	@Override
 	public boolean dealCard(final Card card) 
 	{
-		// TODO Auto-generated method stub
-		return false;
+	    final int scoreAfterDeal = getScore() + card.getValue();
+	    if (scoreAfterDeal <= BUST_SCORE)
+	    {
+	        cards.add(card);
+	        return true;
+	    }
+	    return false;
 	}
 
 	@Override
-	public boolean isEmpty() 
+	public boolean isEmpty()
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return cards.isEmpty();
 	}
 
 	@Override
 	public int getNumberOfCards() 
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return cards.size();
 	}
 
 	@Override
 	public int getScore() 
 	{
-		// TODO Auto-generated method stub
-		return 0;
+	    int result = 0;
+	    for (final Card card : cards) 
+	    {
+	        result += card.getRank().getRankValue();
+	    }
+	    return result;
 	}
 
 	@Override
 	public int getSuitCount(final Suit suit) 
 	{
-		// TODO Auto-generated method stub
-		return 0;
+	    int result = 0;
+	    for (final Card card : cards)
+	    {
+	        if (card.getSuit().equals(suit)) {
+	            result++;
+	        }
+	    }
+	    return result;
 	}
 
 	@Override
 	public Collection<Card> getCards() 
 	{
-		// TODO Auto-generated method stub
-		return null;
+	    return Collections.unmodifiableCollection(cards);
 	}
 
 	@Override
 	public void reset() 
 	{
-		// TODO Auto-generated method stub
-		
+		cards.clear();
+	}
+	
+	@Override
+	public String toString()
+	{
+	    if (isEmpty()) {
+	        return "Empty Hand";
+	    }
+	    return String.format(
+	        "Hand of %d cards %s Score: %d", getNumberOfCards(), cards, getScore()
+	    );
 	}
 
 }

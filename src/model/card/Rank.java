@@ -30,22 +30,38 @@ package model.card;
  */
 public enum Rank
 {
-	ACE,
-	EIGHT,
-	FIVE,
-	FOUR,
-	JACK,
-	KING,
-	NINE,
-	QUEEN,
-	SEVEN,
-	SIX,
-	TEN,
-	THREE,
-	TWO;	
+	ACE   ("Ace", 1),
+	EIGHT ("8", 8),
+	FIVE  ("5", 5),
+	FOUR  ("4", 4),
+	JACK  ("Jack", 10),
+	KING  ("King", 10),
+	NINE  ("9", 9),
+	QUEEN ("Queen", 10),
+	SEVEN ("7", 7),
+	SIX   ("6", 6),
+	TEN   ("10", 10),
+	THREE ("3", 3),
+	TWO   ("2", 2);
 	
-	public int getRankValue() {
-		return 0;
+    private final String name;
+	private final int rankValue;
+	
+	private Rank(final String name, final int rankValue) 
+	{
+	    this.name = name;
+		this.rankValue = rankValue;
 	}
 	
+	public int getRankValue() 
+	{
+		return rankValue;
+	}
+	
+	@Override
+	public String toString() 
+	{
+	    return name;
+	}
+
 }

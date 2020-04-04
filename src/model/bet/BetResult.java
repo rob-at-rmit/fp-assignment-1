@@ -19,8 +19,22 @@ package model.bet;
  */
 public enum BetResult
 {
-	UNDETERMINED,
-	PLAYER_LOSS,
-	DRAW,
-	PLAYER_WIN
+	UNDETERMINED("Undetermined"),
+	PLAYER_LOSS("Player Lose"),
+	DRAW("Draw"),
+	PLAYER_WIN("Player Win");
+	
+	private final String name;
+    
+    private BetResult(final String name) 
+    {
+        this.name = name;
+    }
+    
+    @Override
+    public String toString() 
+    {
+        return name;
+    }
+    
 }

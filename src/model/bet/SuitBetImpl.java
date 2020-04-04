@@ -4,74 +4,64 @@ import model.Player;
 import model.card.Hand;
 import model.card.Suit;
 
-public class SuitBetImpl implements SuitBet 
+public class SuitBetImpl extends AbstractBet implements SuitBet 
 {
+    private static final int SUIT_BET_MULTIPLIER = 4;
 
-	public SuitBetImpl(final Player player, final int amount, final Suit suit) throws NullPointerException, IllegalArgumentException
-	{
-		
-	}
-	
-	@Override
-	public Player getPlayer() 
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+	private final Suit suit;
+	private BetResult betResult;
 
-	@Override
-	public int getAmount() 
+	public SuitBetImpl(final Player player, final int amount, final Suit suit) 
+	    throws NullPointerException, IllegalArgumentException
 	{
-		// TODO Auto-generated method stub
-		return 0;
+	    super(player, amount);
+		this.suit = suit;
+		this.betResult = BetResult.UNDETERMINED;
 	}
 
 	@Override
 	public int getMultiplier() 
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return SUIT_BET_MULTIPLIER;
 	}
+	
+    /**
+     * Returns the latest result.
+     */
+    @Override
+    public BetResult getResult() 
+    {
+        return betResult;
+    }
 
 	@Override
 	public BetResult finaliseBet(final Hand houseHand) 
 	{
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public BetResult getResult() 
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+	    final int playerSuitCount = getPlayer().getHand().getSuitCount(suit);
+	    final int houseSuitCount = houseHand.getSuitCount(suit);
+        
+        if (playerSuitCount <= houseSuitCount) 
+        {
+            betResult = BetResult.PLAYER_LOSS;
+        }
+        else {
+            betResult = BetResult.PLAYER_WIN; 
+        }
 
-	@Override
-	public int getOutcome() 
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getOutcome(BetResult result) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int compareTo(Bet bet) 
-	{
-		// TODO Auto-generated method stub
-		return 0;
+        return betResult;
 	}
 
 	@Override
 	public Suit getSuit() 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return suit;
+	}
+	
+	@Override
+	public String toString() 
+	{
+		return String.format("Suit Bet for %s on %s", getAmount(), getSuit());
 	}
 
 }

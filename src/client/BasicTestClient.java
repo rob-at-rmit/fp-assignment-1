@@ -36,7 +36,7 @@ public class BasicTestClient
 	{
 		// calls validator to check your code meets specifications
 		// set parameter to true for more verbose output
-		if(Validator.validate(true) == false)
+		if(Validator.validate(false) == false)
 			return;
 	
 		// Creates a game engine

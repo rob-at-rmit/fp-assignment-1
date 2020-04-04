@@ -1,11 +1,15 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import model.GameEngine;
 import model.Player;
+import model.bet.Bet;
 import model.card.Card;
 import model.card.Deck;
 import model.card.Hand;
@@ -46,66 +50,95 @@ public class ConsoleLoggerCallback implements GameCallback
 		LOGGER.setUseParentHandlers(false);
 	}
 	
+	
+	private final GameEngine engine;
+	
 	public ConsoleLoggerCallback(final GameEngine engine) 
 	{
 		super();
-		// TODO: Implement me
+		// Unused
+		this.engine = engine;
 	}
 
 	@Override
-	public void addPlayer(Player player) 
+	public void addPlayer(final Player player) 
 	{
-		// TODO Auto-generated method stub
-		
+		LOGGER.info(String.format("Added %s", player));
 	}
 
 	@Override
-	public void removePlayer(Player player) 
+	public void removePlayer(final Player player) 
 	{
-		// TODO Auto-generated method stub
-		
+		LOGGER.info(String.format("Removed %s", player));
 	}
 
 	@Override
-	public void betUpdated(Player player) 
+	public void betUpdated(final Player player)
 	{
-		// TODO Auto-generated method stub
-		
+		LOGGER.info(
+			String.format("Bet updated for %s to %s", player.getId(), player.getBet())
+		);
 	}
 
 	@Override
-	public void newDeck(Deck deck) 
+	public void newDeck(final Deck deck) 
 	{
-		// TODO Auto-generated method stub
-		
+	    LOGGER.info("A new deck of cards was created with 52 cards");
 	}
 
 	@Override
-	public void playerCard(Player player, Card card) 
+	public void playerCard(final Player player, final Card card) 
 	{
-		// TODO Auto-generated method stub
-		
+	    LOGGER.fine(String.format("Player %s dealt %s", player.getId(), card));
 	}
 
 	@Override
-	public void playerBust(Player player, Card card) 
+	public void playerBust(final Player player, final Card card) 
 	{
-		// TODO Auto-generated method stub
-		
+	    LOGGER.fine(String.format("Player %s bust on %s", player.getId(), card));
 	}
 
 	@Override
-	public void houseCard(Hand houseHand, Card card) 
+	public void houseCard(final Hand houseHand, final Card card) 
 	{
-		// TODO Auto-generated method stub
-		
+	    LOGGER.fine(String.format("House dealt %s", card));
 	}
 
 	@Override
-	public void houseBust(Hand houseHand, Card card) 
+	public void houseBust(final Hand houseHand, final Card card) 
 	{
-		// TODO Auto-generated method stub
-		
+	    LOGGER.fine(String.format("House bust on %s", card));
+	    LOGGER.info(String.format("House Hand: %s", houseHand));
+	    LOGGER.info(String.format("Final Results:%s", getFinalResults()));
+	}
+	
+	private String getFinalResults() 
+	{
+	    final List<String> results = new ArrayList<>();
+	    for (final Player player : engine.getAllPlayers())
+	    {
+	        results.add(getFinalResults(player));
+	    }
+	    return String.join("", results);
+	}
+	
+	private String getFinalResults(final Player player) 
+	{
+	    return String.format(
+	        "%n%s%nPlayer: %-11s%-20s%s%s",
+	        player,
+	        player.getId(),
+	        player.getName(),
+	        player.getBet().equals(Bet.NO_BET) ? player.getBet() : player.getBet().getResult(),
+	        formatBetOutcome(player)
+	    );
+	}
+	
+	private String formatBetOutcome(final Player player) 
+	{
+	    return (
+	        player.getBet().equals(Bet.NO_BET) ? "" : String.format("%8d", player.getBet().getOutcome())
+	    );
 	}
 	
 

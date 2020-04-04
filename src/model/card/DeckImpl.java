@@ -1,44 +1,64 @@
 package model.card;
 
+import java.util.Collections;
+import java.util.Stack;
+
+import util.ExceptionUtil;
+
 public class DeckImpl implements Deck
 {
-	
+
 	public static Deck createShuffledDeck() 
 	{
-		// TODO implement me
-		return null;
+        final Deck shuffled = new DeckImpl(createStackOfAllCards());
+        shuffled.shuffleDeck();
+        return shuffled;
 	}
 	
 	public static Deck createSortedDeck() 
 	{
-		// TODO implement me
-		return null;
+	    final Stack<Card> sorted = createStackOfAllCards();
+	    Collections.sort(sorted);
+	    return new DeckImpl(sorted);
 	}
 	
-	private DeckImpl() 
+	private static Stack<Card> createStackOfAllCards() 
 	{
-		
+	    final Stack<Card> all = new Stack<>();
+	    for (final Suit suit : Suit.values()) 
+	    {
+	        for (final Rank rank : Rank.values()) 
+	        {
+	            all.add(new CardImpl(suit, rank));
+	        }
+	    }
+	    return all;
+	}
+	
+	private final Stack<Card> cards;
+
+	private DeckImpl(final Stack<Card> cards) 
+	{
+	    this.cards = cards;
 	}
 
 	@Override
 	public Card removeNextCard() throws IllegalStateException 
 	{
-		// TODO Auto-generated method stub
-		return null;
+	    ExceptionUtil.assertLegalState(!cards.isEmpty(), "No cards in deck");
+	    return cards.pop();
 	}
 
 	@Override
 	public int cardsInDeck() 
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return cards.size();
 	}
 
 	@Override
-	public void shuffleDeck() 
+	public void shuffleDeck()
 	{
-		// TODO Auto-generated method stub
-		
+	    Collections.shuffle(cards);
 	}
 
 }
