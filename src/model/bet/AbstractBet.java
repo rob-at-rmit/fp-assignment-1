@@ -3,6 +3,11 @@ package model.bet;
 import model.Player;
 import util.ExceptionUtil;
 
+/**
+ * TODO: 
+ * 
+ * @author Robert Beardow, Student ID 3461721
+ */
 public abstract class AbstractBet implements Bet
 {
 

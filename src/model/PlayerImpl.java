@@ -5,6 +5,11 @@ import model.bet.BetResult;
 import model.card.Hand;
 import model.card.HandImpl;
 
+/**
+ * TODO: 
+ * 
+ * @author Robert Beardow, Student ID 3461721
+ */
 public class PlayerImpl implements Player 
 {
 	

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * TODO: 
+ * 
+ * @author Robert Beardow, Student ID 3461721
+ */
 public class HandImpl implements Hand 
 {
     

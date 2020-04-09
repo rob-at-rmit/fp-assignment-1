@@ -4,6 +4,11 @@ import model.Player;
 import model.card.Hand;
 import model.card.Suit;
 
+/**
+ * TODO: 
+ * 
+ * @author Robert Beardow, Student ID 3461721
+ */
 public class SuitBetImpl extends AbstractBet implements SuitBet 
 {
     private static final int SUIT_BET_MULTIPLIER = 4;
@@ -29,7 +34,7 @@ public class SuitBetImpl extends AbstractBet implements SuitBet
      * Returns the latest result.
      */
     @Override
-    public BetResult getResult() 
+    public BetResult getResult()
     {
         return betResult;
     }

@@ -1,6 +1,11 @@
 package util;
 
-public class ExceptionUtil
+/**
+ * TODO: 
+ * 
+ * @author Robert Beardow, Student ID 3461721
+ */
+public final class ExceptionUtil
 {
     
     public static void assertNotNull(final Object object, final String message)

@@ -140,6 +140,5 @@ public class ConsoleLoggerCallback implements GameCallback
 	        player.getBet().equals(Bet.NO_BET) ? "" : String.format("%8d", player.getBet().getOutcome())
 	    );
 	}
-	
 
 }

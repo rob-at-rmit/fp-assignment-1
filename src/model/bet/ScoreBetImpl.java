@@ -3,6 +3,11 @@ package model.bet;
 import model.Player;
 import model.card.Hand;
 
+/**
+ * TODO: 
+ * 
+ * @author Robert Beardow, Student ID 3461721
+ */
 public class ScoreBetImpl extends AbstractBet implements ScoreBet 
 {
 
@@ -33,12 +38,12 @@ public class ScoreBetImpl extends AbstractBet implements ScoreBet
     }
 
 	@Override
-	public BetResult finaliseBet(final Hand houseHand) 
+	public BetResult finaliseBet(final Hand houseHand)
 	{
 	    final int playerScore = getPlayer().getHand().getScore();
 	    final int houseScore = houseHand.getScore();
 
-	    if (playerScore < houseScore) 
+	    if (playerScore < houseScore)
 	    {
 	        betResult = BetResult.PLAYER_LOSS;
 	    }

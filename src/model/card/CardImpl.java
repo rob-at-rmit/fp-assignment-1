@@ -1,5 +1,10 @@
 package model.card;
 
+/**
+ * TODO: 
+ * 
+ * @author Robert Beardow, Student ID 3461721
+ */
 public class CardImpl implements Card 
 {
     
