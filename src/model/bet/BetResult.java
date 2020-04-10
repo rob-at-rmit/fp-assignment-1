@@ -19,18 +19,29 @@ package model.bet;
  */
 public enum BetResult
 {
-	UNDETERMINED("Undetermined"),
-	PLAYER_LOSS("Player Lose"),
-	DRAW("Draw"),
-	PLAYER_WIN("Player Win");
+
+	UNDETERMINED ("Undetermined"),
+	PLAYER_LOSS  ("Player Lose"),
+	DRAW         ("Draw"),
+	PLAYER_WIN   ("Player Win");
 	
+    /**
+     * Human readable name of this bet result. 
+     */
 	private final String name;
     
-    private BetResult(final String name) 
+	/**
+	 * Private constructor for each enum value.
+	 * @param name
+	 */
+    private BetResult(final String name)
     {
         this.name = name;
     }
     
+    /**
+     * Returns the human readable name of this result as the string representation.
+     */
     @Override
     public String toString() 
     {

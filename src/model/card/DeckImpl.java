@@ -6,13 +6,18 @@ import java.util.Stack;
 import util.ExceptionUtil;
 
 /**
- * TODO: 
+ * Deck interface implementation class as per specification and Javadoc. 
  * 
  * @author Robert Beardow, Student ID 3461721
  */
 public class DeckImpl implements Deck
 {
 
+    /**
+     * Creates and returns a new Deck instance that is shuffled and ready
+     * to deal.
+     * @return a new shuffled deck instance.
+     */
 	public static Deck createShuffledDeck() 
 	{
         final Deck shuffled = new DeckImpl(createStackOfAllCards());
@@ -20,6 +25,11 @@ public class DeckImpl implements Deck
         return shuffled;
 	}
 	
+	/**
+	 * Creates and returns a new Deck instance that is sorted according to 
+	 * card ordering as per specification.
+	 * @return a new sorted deck instance.
+	 */
 	public static Deck createSortedDeck() 
 	{
 	    final Stack<Card> sorted = createStackOfAllCards();
@@ -27,6 +37,10 @@ public class DeckImpl implements Deck
 	    return new DeckImpl(sorted);
 	}
 	
+	/**
+	 * Creates a Stack of the full 52 card standard deck.
+	 * @return
+	 */
 	private static Stack<Card> createStackOfAllCards() 
 	{
 	    final Stack<Card> all = new Stack<>();
@@ -40,13 +54,23 @@ public class DeckImpl implements Deck
 	    return all;
 	}
 	
+	/**
+	 * The stack collection which backs this instance of DeckImpl.
+	 */
 	private final Stack<Card> cards;
 
+	/**
+	 * Private constructor.
+	 * @param cards stack of cards to use to create this deck.
+	 */
 	private DeckImpl(final Stack<Card> cards) 
 	{
 	    this.cards = cards;
 	}
 
+	/**
+	 * Pops the next card off the stack and returns it.
+	 */
 	@Override
 	public Card removeNextCard() throws IllegalStateException 
 	{
@@ -54,12 +78,18 @@ public class DeckImpl implements Deck
 	    return cards.pop();
 	}
 
+	/**
+	 * Returns the number of cards remaining in the deck.
+	 */
 	@Override
 	public int cardsInDeck() 
 	{
 		return cards.size();
 	}
 
+	/**
+	 * Shuffles the deck in place.
+	 */
 	@Override
 	public void shuffleDeck()
 	{

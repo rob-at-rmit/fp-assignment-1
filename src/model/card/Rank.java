@@ -31,33 +31,51 @@ package model.card;
 public enum Rank
 {
 	ACE   ("Ace", 1),
-	EIGHT ("8", 8),
-	FIVE  ("5", 5),
-	FOUR  ("4", 4),
-	JACK  ("Jack", 10),
-	KING  ("King", 10),
-	NINE  ("9", 9),
-	QUEEN ("Queen", 10),
-	SEVEN ("7", 7),
-	SIX   ("6", 6),
-	TEN   ("10", 10),
+	TWO   ("2", 2),
 	THREE ("3", 3),
-	TWO   ("2", 2);
-	
+	FOUR  ("4", 4),
+	FIVE  ("5", 5),
+	SIX   ("6", 6),
+	SEVEN ("7", 7),
+	EIGHT ("8", 8),
+	NINE  ("9", 9),
+	TEN   ("10", 10),
+	JACK  ("Jack", 10),
+	QUEEN ("Queen", 10),
+	KING  ("King", 10);
+
+    /**
+     * Human readable name of this rank.
+     */
     private final String name;
+    
+    /**
+     * Actual int value of this rank for game logic.
+     */
 	private final int rankValue;
 	
+	/**
+	 * Private constructor for each enum value.
+	 * @param name the human readable name of this item.
+	 * @param rankValue the game rank value of this item.
+	 */
 	private Rank(final String name, final int rankValue) 
 	{
 	    this.name = name;
 		this.rankValue = rankValue;
 	}
 	
+	/**
+	 * Returns the rank value of this enum item.
+	 */
 	public int getRankValue() 
 	{
 		return rankValue;
 	}
-	
+
+	/**
+	 * String representation as per the specification.
+	 */
 	@Override
 	public String toString() 
 	{

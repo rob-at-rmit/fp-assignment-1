@@ -50,66 +50,87 @@ public class ConsoleLoggerCallback implements GameCallback
 		LOGGER.setUseParentHandlers(false);
 	}
 	
-	
+	/**
+	 * Local reference to game engine for handling any global
+	 * logging callbacks.
+	 */
 	private final GameEngine engine;
-	
-	public ConsoleLoggerCallback(final GameEngine engine) 
+
+	/**
+	 * Public constructor as per the specification. Stores a reference
+	 * to the game engine instance this callback is associated with.
+	 * 
+	 * @param engine the engine this callback is registered with.
+	 */
+	public ConsoleLoggerCallback(final GameEngine engine)
 	{
 		super();
-		// Unused
 		this.engine = engine;
 	}
 
 	@Override
 	public void addPlayer(final Player player) 
 	{
-		LOGGER.info(String.format("Added %s", player));
+	    LOGGER.log(Level.INFO, "Added {0}", player);
 	}
 
 	@Override
 	public void removePlayer(final Player player) 
 	{
-		LOGGER.info(String.format("Removed %s", player));
+		LOGGER.log(Level.INFO, "Removed {0}", player); 
 	}
 
 	@Override
 	public void betUpdated(final Player player)
 	{
-		LOGGER.info(
-			String.format("Bet updated for %s to %s", player.getId(), player.getBet())
+		LOGGER.log(
+		    Level.INFO,
+			"Bet updated for {0} to {1}",
+			new Object[] { player.getId(), player.getBet() }
 		);
 	}
 
 	@Override
 	public void newDeck(final Deck deck) 
 	{
-	    LOGGER.info("A new deck of cards was created with 52 cards");
+	    LOGGER.log(
+	        Level.INFO, 
+	        "A new deck of cards was created with 52 cards"
+	    );
 	}
 
 	@Override
 	public void playerCard(final Player player, final Card card) 
 	{
-	    LOGGER.fine(String.format("Player %s dealt %s", player.getId(), card));
+	    LOGGER.log(
+	        Level.FINE,
+	        "Player {0} dealt {1}",
+	        new Object[] {player.getId(), card}
+	    );
 	}
 
 	@Override
 	public void playerBust(final Player player, final Card card) 
 	{
-	    LOGGER.fine(String.format("Player %s bust on %s", player.getId(), card));
+	    LOGGER.log(
+	        Level.FINE, 
+	        "Player {0} bust on {1}", 
+	        new Object[] {player.getId(), card}
+	    );
 	}
 
 	@Override
 	public void houseCard(final Hand houseHand, final Card card) 
 	{
-	    LOGGER.fine(String.format("House dealt %s", card));
+	    LOGGER.log(Level.FINE, String.format("House dealt %s", card));
 	}
 
 	@Override
 	public void houseBust(final Hand houseHand, final Card card) 
 	{
-	    LOGGER.fine(String.format("House bust on %s", card));
-	    LOGGER.info(String.format("House Hand: %s", houseHand));
-	    LOGGER.info(String.format("Final Results:%s", getFinalResults()));
+	    LOGGER.log(Level.FINE, "House bust on {0}", card);
+	    LOGGER.log(Level.FINE, "House Hand: {0}", houseHand);
+	    LOGGER.log(Level.FINE, "Final Results:{0}", getFinalResults());
 	}
 	
 	private String getFinalResults() 

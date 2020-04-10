@@ -1,13 +1,20 @@
 package util;
 
 /**
- * TODO: 
+ * Utilitiy class to help with assertions and method parameter validation
+ * consistently.
  * 
  * @author Robert Beardow, Student ID 3461721
  */
 public final class ExceptionUtil
 {
     
+    /**
+     * Throws a {@link java.lang.NullPointerException} if the specified object is null, and
+     * presents the specified message.
+     * @param object object to test.
+     * @param message message to use in exception.
+     */
     public static void assertNotNull(final Object object, final String message)
     {
         if (object == null)
@@ -16,6 +23,12 @@ public final class ExceptionUtil
         }
     }
     
+    /**
+     * Throws a {@link java.lang.IllegalArgumentException} if the specified 
+     * predicate is resolved to false.
+     * @param object predicate to test.
+     * @param message message to use in exception.
+     */
     public static void assertLegalArgument(final boolean predicate, final String message)
     {
         if (!predicate) 
@@ -24,6 +37,12 @@ public final class ExceptionUtil
         }
     }
     
+    /**
+     * Throws a {@link java.lang.IllegalStateException} if the specified 
+     * predicate is resolved to false.
+     * @param object predicate to test.
+     * @param message message to use in exception.
+     */
     public static void assertLegalState(final boolean predicate, final String message)
     {
         if (!predicate)
@@ -31,6 +50,5 @@ public final class ExceptionUtil
             throw new IllegalStateException(message);
         }
     }
-    
 
 }

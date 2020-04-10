@@ -30,13 +30,23 @@ public enum Suit
 	HEARTS   ("Hearts"),
 	SPADES   ("Spades");
 	
+    /**
+     * Human readable name of the suit.
+     */
 	private final String name;
 	
+	/**
+     * Private constructor for each enum value.
+     * @param name the human readable name of this item.
+	 */
 	private Suit(final String name) 
 	{
 		this.name = name;
 	}
 
+	/**
+	 * String representation as per the specification.
+	 */
 	@Override
 	public String toString() 
 	{

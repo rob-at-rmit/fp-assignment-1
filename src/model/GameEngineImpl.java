@@ -251,6 +251,32 @@ public class GameEngineImpl implements GameEngine
         }
     }
     
+
+    @Override
+    public void resetAllBetsAndHands() 
+    {
+        /*
+         * Ensure the deck is reset to null so it is initialised 
+         * again once the first player deal occurs.
+         */
+        deck = null;
+        
+        /*
+         * Reset the house hand.
+         */
+        houseHand.reset();
+        
+        /*
+         * Reset all bets and hands for all players.
+         */
+        for (final Player player : getAllPlayers())
+        {
+            player.getHand().reset();
+            player.resetBet();
+            fireBetUpdatedCallbacks(player);
+        }
+    }
+    
     /**
      * Finishes the game by applying all bet results to all players based on the 
      * current and final house hand.
@@ -350,6 +376,11 @@ public class GameEngineImpl implements GameEngine
         }
     }
 
+    /**
+     * Ensures the deck in use is ready to deal, either by initialising it
+     * in the first instance if it hasn't been created yet, or if there are no
+     * more cards left to deal.
+     */
 	private void ensureDeckReadyToDeal() {
 	    if (deck == null || deck.cardsInDeck() == 0)
 	    {
@@ -358,6 +389,10 @@ public class GameEngineImpl implements GameEngine
 	    }
 	}
 	
+	/**
+	 * Causes the current thread to wait for the specified number of ms and
+	 * takes no action on interrupt.
+	 */
 	private void wait(final int delayMilliseconds) {
         try 
         {
@@ -365,7 +400,7 @@ public class GameEngineImpl implements GameEngine
         }
         catch (final InterruptedException e)
         {
-            
+            // No action on interrupt
         }
 	}
 	
@@ -389,6 +424,12 @@ public class GameEngineImpl implements GameEngine
 	    );
 	}
 	
+	/**
+	 * Ensures the specified delay is not negative otherwise throws an 
+	 * IllegalArgumentException.
+	 * 
+	 * @param delay delay value to test.
+	 */
 	private void assertDelayNotNegative(final int delay)
 	{
         ExceptionUtil.assertLegalArgument(
@@ -396,6 +437,11 @@ public class GameEngineImpl implements GameEngine
         );
 	}    
 
+    /**
+     * Ensures the specified player is not null and does not already exist in the game.
+     * 
+     * @param player player reference to test.
+     */
 	private void assertPlayerDoesNotExist(final Player player)
 	{
 	    ExceptionUtil.assertNotNull(player, "Player cannot be null");
@@ -405,6 +451,11 @@ public class GameEngineImpl implements GameEngine
         );
 	}
 
+    /**
+     * Ensures the specified player is not null and exists in the game.
+     * 
+     * @param player player reference to test.
+     */
     private void assertPlayerExists(final String playerId)
     {
         ExceptionUtil.assertNotNull(playerId, "Player ID cannot be null");
@@ -413,31 +464,5 @@ public class GameEngineImpl implements GameEngine
             String.format("Player with ID %s does not exist in game", playerId)
         );
     }
-
-
-	@Override
-	public void resetAllBetsAndHands() 
-	{
-	    /*
-	     * Ensure the deck is reset to null so it is initialised 
-	     * again once the first player deal occurs.
-	     */
-	    deck = null;
-	    
-	    /*
-	     * Reset the house hand.
-	     */
-	    houseHand.reset();
-	    
-	    /*
-	     * Reset all bets and hands for all players.
-	     */
-	    for (final Player player : getAllPlayers())
-	    {
-	        player.getHand().reset();
-	        player.resetBet();
-	        fireBetUpdatedCallbacks(player);
-	    }
-	}
 
 }
