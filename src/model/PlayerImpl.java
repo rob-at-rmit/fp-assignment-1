@@ -157,8 +157,7 @@ public class PlayerImpl implements Player
 	         */
 	        if (result.equals(BetResult.PLAYER_WIN))
 	        {
-	            final int outcome = currentBet.getOutcome();
-	            points = points + outcome;
+	            points = points + currentBet.getOutcome();
 	        }
 	        /*
 	         * Player draws, return original quarantined amount.

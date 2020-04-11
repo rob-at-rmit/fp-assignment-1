@@ -1,7 +1,6 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
@@ -68,18 +67,27 @@ public class ConsoleLoggerCallback implements GameCallback
 		this.engine = engine;
 	}
 
+	/**
+	 * Callback for adding a player.
+	 */
 	@Override
 	public void addPlayer(final Player player) 
 	{
 	    LOGGER.log(Level.INFO, "Added {0}", player);
 	}
 
+    /**
+     * Callback for removing a player.
+     */
 	@Override
 	public void removePlayer(final Player player) 
 	{
 		LOGGER.log(Level.INFO, "Removed {0}", player); 
 	}
 
+    /**
+     * Callback for a bet being updated for a player.
+     */
 	@Override
 	public void betUpdated(final Player player)
 	{
@@ -90,6 +98,9 @@ public class ConsoleLoggerCallback implements GameCallback
 		);
 	}
 
+    /**
+     * Callback for a new deck being initialised.
+     */
 	@Override
 	public void newDeck(final Deck deck) 
 	{
@@ -99,6 +110,9 @@ public class ConsoleLoggerCallback implements GameCallback
 	    );
 	}
 
+    /**
+     * Callback for player being dealt a card and not busting.
+     */
 	@Override
 	public void playerCard(final Player player, final Card card) 
 	{
@@ -109,6 +123,9 @@ public class ConsoleLoggerCallback implements GameCallback
 	    );
 	}
 
+    /**
+     * Callback for player being dealt a card busting.
+     */
 	@Override
 	public void playerBust(final Player player, final Card card) 
 	{
@@ -119,12 +136,18 @@ public class ConsoleLoggerCallback implements GameCallback
 	    );
 	}
 
+	/**
+	 * Callback for the house being dealt a card.
+	 */
 	@Override
 	public void houseCard(final Hand houseHand, final Card card) 
 	{
 	    LOGGER.log(Level.FINE, String.format("House dealt %s", card));
 	}
 
+	/**
+	 * Callback for the house busing.
+	 */
 	@Override
 	public void houseBust(final Hand houseHand, final Card card) 
 	{
@@ -133,6 +156,10 @@ public class ConsoleLoggerCallback implements GameCallback
 	    LOGGER.log(Level.FINE, "Final Results:{0}", getFinalResults());
 	}
 	
+	/**
+	 * Formats the final results for multi-line log output.
+	 * @return
+	 */
 	private String getFinalResults() 
 	{
 	    final List<String> results = new ArrayList<>();
@@ -143,6 +170,11 @@ public class ConsoleLoggerCallback implements GameCallback
 	    return String.join("", results);
 	}
 	
+	/**
+	 * 
+	 * @param player
+	 * @return
+	 */
 	private String getFinalResults(final Player player) 
 	{
 	    return String.format(
