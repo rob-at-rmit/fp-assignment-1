@@ -17,13 +17,6 @@ public class ScoreBetImpl extends AbstractBet implements ScoreBet
      * Bet multiplier value for a score bet.
      */
     private static final int SCORE_BET_MULTIPLIER = 2;
-    
-    /**
-     * The result of this bet. Ideally this would have been shared in 
-     * AbstractBet as both score and suit bets have a result, however this 
-     * broke the validator. 
-     */
-    private BetResult betResult;
 
     /**
      * Constructor which delegates to the abstract superclass AbstractBet for
@@ -38,7 +31,6 @@ public class ScoreBetImpl extends AbstractBet implements ScoreBet
 	    throws NullPointerException, IllegalArgumentException
 	{
 	    super(player, amount);
-	    this.betResult = BetResult.UNDETERMINED;
 	}
 
 	/**
@@ -49,15 +41,6 @@ public class ScoreBetImpl extends AbstractBet implements ScoreBet
 	{
 		return SCORE_BET_MULTIPLIER;
 	}
-
-    /**
-     * Returns the latest result.
-     */
-    @Override
-    public BetResult getResult() 
-    {
-        return betResult;
-    }
     
     /**
      * Finalises this bet by using the specified house hand to calculate the

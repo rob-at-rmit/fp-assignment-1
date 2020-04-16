@@ -21,6 +21,14 @@ public abstract class AbstractBet implements Bet
      * The amount of this bet.
      */
     private final int amount;
+    
+    /**
+     * The result of this bet.
+     * Not ideal to be protected as discussed on the discussion boards, ideally
+     * it would be shared with the class heirarchy only and this couldn't be
+     * done through protected getter/setter methods as this broke the validator.
+     */
+    protected BetResult betResult;
 
     /**
      * Base constructor that implements common constructor validation logic
@@ -43,6 +51,16 @@ public abstract class AbstractBet implements Bet
         );
         this.player = player;
         this.amount = amount;
+        this.betResult = BetResult.UNDETERMINED;
+    }
+    
+    /**
+     * Returns the latest result.
+     */
+    @Override
+    public BetResult getResult()
+    {
+        return betResult;
     }
 
     /**
